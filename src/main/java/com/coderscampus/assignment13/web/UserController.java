@@ -66,9 +66,9 @@ public class UserController {
 		return "redirect:/users";
 	}
 
-	@PostMapping("/users")
-	public String editUser (@PathVariable Long userId) {
-
-		return "redirect:/users";
-	}
+//	@PostMapping("/users")
+//	public String editUser () {
+//
+//		return "update";
+//	}
 }

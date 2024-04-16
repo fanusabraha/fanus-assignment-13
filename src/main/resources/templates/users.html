@@ -27,12 +27,8 @@
 		</div>
 		
 		<div th:unless="${#lists.size(users) == 1}" th:each="user : ${users}">
-			<form action="" method="post">
-			<a	href="https://courses.coderscampus.com/students/courses/274/sections/689/lessons/4986"> <span th:text="${user.userId}"> </span>
-			</a>
-			</form>
-			<br/>
 
+			<a th:href="'/users/' + ${user.userId}" th:text="${user.userId}"></a><br/>
 			<span th:text="${user.username}"></span><br/>
 			<span th:text="${user.name}"></span><br/>
 			<span th:text="${user.password}"></span>

@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"   xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Update</title>
 </head>
 <body>
-<h1>Usersssss</h1>
+<h1>Users</h1>
+
+
+<div th:unless="${#lists.size(users) == 1}" th:each="user : ${users}">
+
+    <span th:text="${user.username}"></span><br/>
+    <span th:text="${user.name}"></span><br/>
+    <span th:text="${user.password}"></span>
+    <div th:each="account : ${user.accounts}">
+        <span th:text="${account.accountName}"></span>
+    </div>
+
+
 
 </body>
 </html>
