@@ -72,7 +72,7 @@ public class UserService {
 			newaddress.setRegion(user.getAddress().getRegion());
 			newaddress.setCountry(user.getAddress().getCountry());
 			newaddress.setZipCode(user.getAddress().getZipCode());
-			ad
+			user.setAddress(newaddress);
 		}
 		return userRepo.save(user);
 	}
