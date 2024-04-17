@@ -44,9 +44,11 @@
 					<input type="submit" value="Update User Account" />
 			</div>
 			</form>
+
 			<form th:action="@{/users/{userId}/delete(userId=${user.userId})}" method="post">
 				<input type="submit" value="Delete User Account" />
 			</form>
+			<h1>Accounts</h1>
 
 		</div>
 
