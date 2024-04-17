@@ -68,8 +68,6 @@ public class UserService {
 
 		}
 		if (user.getUserId() != null) {
-
-
 			Address newaddress = new Address();
 			newaddress.setAddressLine1(user.getAddress().getAddressLine1());
 			newaddress.setAddressLine2(user.getAddress().getAddressLine2());
@@ -81,6 +79,7 @@ public class UserService {
 			newaddress.setUser(user);
 			user.setAddress(newaddress);
 		}
+
 		return userRepo.save(user);
 	}
 
