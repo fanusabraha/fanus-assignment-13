@@ -20,7 +20,7 @@
 
 
 			<hr>
-			
+
 			<div>
 				Adress Line 1: <input type="text" th:field="${user.username}" />
 			</div>
@@ -44,12 +44,23 @@
 					<input type="submit" value="Update User Account" />
 			</div>
 			</form>
+
 			<form th:action="@{/users/{userId}/delete(userId=${user.userId})}" method="post">
 				<input type="submit" value="Delete User Account" />
 			</form>
+			<hr>
+			<h1>Accounts</h1>
+			<!--<div th:each="accounts:${user.account}">
+				<a Account# th:href="" th:text="${user.userId}"></a> <br>
+				<form action="" method="get">
+					<input type="submit" value="Create New Bank Account">
+				</form>
 
+			</div>
+                -->
 		</div>
-		
+
+
 		<div th:unless="${#lists.size(users) == 1}" th:each="user : ${users}">
 
 			<a th:href="'/users/' + ${user.userId}" th:text="${user.userId}"></a><br/>
