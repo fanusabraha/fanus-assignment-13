@@ -3,6 +3,8 @@ package com.coderscampus.assignment13.web;
 import java.util.Arrays;
 import java.util.Set;
 
+import com.coderscampus.assignment13.domain.Account;
+import com.coderscampus.assignment13.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,6 +20,8 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private AccountService accountService;
 	
 	@GetMapping("/register")
 	public String getCreateUser (ModelMap model) {
@@ -65,7 +69,12 @@ public class UserController {
 		userService.delete(userId);
 		return "redirect:/users";
 	}
-
+	@PostMapping("/users/{userId}/accounts")
+	public String createNewAccount (User user, Account account) {
+		userService.saveUser(user);
+		accountService.testSaveAccount(account,user);
+		return "account";
+	}
 
 //	@PostMapping("/users")
 //	public String editUser () {

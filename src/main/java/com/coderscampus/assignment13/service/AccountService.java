@@ -16,11 +16,10 @@ public class AccountService {
     }
     public Account testSaveAccount(Account account, User user){
 
-            Account newaccount = new Account();
+           /* Account newaccount = new Account();
             // adding user to account and vice versa adding account to user
             newaccount.getUsers().add(user);
-            user.getAccounts().add(newaccount);
-            accountRepo.save(newaccount);
+            user.getAccounts().add(newaccount);*/
 
         return accountRepository.save(account);
     }
