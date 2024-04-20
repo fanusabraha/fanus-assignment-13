@@ -64,8 +64,6 @@ public class UserService {
 			user.getAccounts().add(savings);
 			accountRepo.save(checking);
 			accountRepo.save(savings);
-			// new code
-
 		}
 		if (user.getUserId() != null) {
 			Address newaddress = new Address();
@@ -78,8 +76,13 @@ public class UserService {
 			newaddress.setUserId(user.getUserId());
 			newaddress.setUser(user);
 			user.setAddress(newaddress);
+            // new from 4/20/2024
+            Account newaccount = new Account();
+            // adding user to account and vice versa adding account to user
+            newaccount.getUsers().add(user);
+            user.getAccounts().add(newaccount);
+            accountRepo.save(newaccount);
 		}
-
 		return userRepo.save(user);
 	}
 
