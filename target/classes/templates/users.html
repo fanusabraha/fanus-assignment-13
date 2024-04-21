@@ -50,6 +50,9 @@
 			</form>
 			<hr>
 			<h1>Accounts</h1>
+			<form action="@{/users/{userId}/accounts(userId=${user.userId})}" method="post">
+				<input	type="submit" value="Create New Bank Account">
+			</form>
 			<!--<div th:each="accounts:${user.account.}">
 				<a Account# th:href="" th:text="${user.userId}"></a> <br>
 				<form action="" method="get">
@@ -58,6 +61,7 @@
 
 			</div>
                 -->
+
 			<a	href="http://localhost:8080/users" >Back</a>
 
 		</div>
