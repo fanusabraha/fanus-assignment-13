@@ -7,10 +7,12 @@
 <body>
 <h1>Account # numbers to come soon</h1>
 
-<form   th:action="" th:method="post">
-    <input> Account Name:
+    <form   th:action="@{/users/{userId}/accounts(userId=${user.userId})}" method="post">
+        <input type="text" th:field="${user.accounts}">
+        <input type="submit" value="Save Account">
 
-</form>
+    </form>
+    <a href="http://localhost:8080/users">Back to Users</a>
 <!--
 <div th:each="account: ${useraccount}">
     Account Name :<input type="text" th:text="${account.account_id}">  <br>

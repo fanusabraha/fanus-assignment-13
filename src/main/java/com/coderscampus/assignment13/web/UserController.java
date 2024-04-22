@@ -70,9 +70,16 @@ public class UserController {
 		return "redirect:/users";
 	}
 	@PostMapping("/users/{userId}/accounts")
-	public String createNewAccount (User user, Account account) {
+	public String createNewAccount (@PathVariable Long userId, ModelMap map, Account account) {
+
+		User user= userService.findById(userId);
+		account.getUsers().add(user);
+		user.getAccounts().add(account);
+		accountService.saveAccount(account);
 		userService.saveUser(user);
-		accountService.testSaveAccount(account,user);
+		//accountService.testSaveAccount(account,user);
+		map.put("user",user);
+		//map.put("useraccount",user.getAccounts());
 		return "account";
 	}
 
