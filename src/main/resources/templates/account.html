@@ -6,8 +6,13 @@
 </head>
 <body>
 <h1>Account # numbers to come soon</h1>
+    <!--
+    <form th:action="@{/users/{userId}/accounts (userId=${user.userId})}" method="post">
 
-    <form   th:action="@{/users/{userId}/accounts(userId=${user.userId})}" method="post">
+    </form>
+    -->
+
+    <form   th:action="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}" method="post">
         <input type="text" th:field="${user.accounts}">
         <input type="submit" value="Save Account">
 
