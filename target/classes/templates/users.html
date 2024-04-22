@@ -50,7 +50,7 @@
 			</form>
 			<hr>
 			<h1>Accounts</h1>
-			<form th:action="@{/users/{userId}/accounts(userId=${user.userId})}" method="post">
+			<form th:action="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}" method="get">
 				<input	type="submit" value="Create New Bank Account">
 			</form>
 			<!--<div th:each="accounts:${user.account.}">

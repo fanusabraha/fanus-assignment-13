@@ -1,6 +1,7 @@
 package com.coderscampus.assignment13.web;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.Set;
 
 import com.coderscampus.assignment13.domain.Account;
@@ -70,12 +71,15 @@ public class UserController {
 		return "redirect:/users";
 	}
 
-	@PostMapping("/users/{userId}/accounts/{accountId}")
+	@GetMapping("/users/{userId}/accounts/{accountId}")
 	public String newAccount (@PathVariable Long userId,@PathVariable Long accountId, ModelMap map) {
 		User user= userService.findById(userId);
-		Account account= accountService.f
+		Optional<Account> accountOpt= accountService.findById(accountId);
+		Account account = accountOpt.orElse(new Account());
+		Account newUserAccout = new Account();
 		map.put("user",user);
-		map.put("account",new Account());
+		//map.put("account",account);
+		map.put("account",newUserAccout);
 
 		return "account";
 	}
