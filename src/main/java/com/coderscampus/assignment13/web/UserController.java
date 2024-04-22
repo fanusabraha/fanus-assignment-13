@@ -34,7 +34,7 @@ public class UserController {
 	
 	@PostMapping("/register")
 	public String postCreateUser (User user) {
-		System.out.println(user);
+
 		userService.saveUser(user);
 		return "redirect:/register";
 	}
@@ -71,30 +71,5 @@ public class UserController {
 		return "redirect:/users";
 	}
 
-	@GetMapping("/users/{userId}/accounts/{accountId}")
-	public String newAccount (@PathVariable Long userId,@PathVariable Long accountId, ModelMap map) {
-		User user= userService.findById(userId);
-		Optional<Account> accountOpt= accountService.findById(accountId);
-		Account account = accountOpt.orElse(new Account());
-		Account newUserAccout = new Account();
-		map.put("user",user);
-		//map.put("account",account);
-		map.put("account",newUserAccout);
-
-		return "account";
-	}
-	@PostMapping("/users/{userId}/accounts/{accountId}")
-	public String createNewAccount (@PathVariable Long userId,@PathVariable Long accountId, ModelMap map, Account account) {
-
-		User user= userService.findById(userId);
-		account.getUsers().add(user);
-		user.getAccounts().add(account);
-		accountService.saveAccount(account);
-		userService.saveUser(user);
-		//accountService.testSaveAccount(account,user);
-		map.put("user",user);
-		//map.put("useraccount",user.getAccounts());
-		return "account";
-	}
 
 }
