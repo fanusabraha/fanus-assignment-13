@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
 
@@ -44,7 +45,7 @@ public class AccountController {
     }
 
     @GetMapping("/users/{userId}/accounts/{accountId}")
-    public String getTheNewAccount (@PathVariable Long userId,@PathVariable Long accountId, ModelMap map) {
+    public String createNewAccount (@PathVariable Long userId,@PathVariable Long accountId, ModelMap map) {
 
         User user= userService.findById(userId);
         Account account =accountService.findById(accountId);
@@ -53,13 +54,18 @@ public class AccountController {
         return "accountupdate";
     }
     @PostMapping("/users/{userId}/accounts/{accountId}")
-    public String createNewAccount (@PathVariable Long userId,@PathVariable Long accountId, ModelMap map, Account newNameAccount) {
-
-        User user= userService.findById(userId);
+    public String saveNewAccount (@PathVariable Long userId, @PathVariable Long accountId, ModelMap map, @RequestParam("accountName") String newNameAccount) {
         Account account =accountService.findById(accountId);
-        account.setAccountName(newNameAccount.getAccountName());
+        account.setAccountName(newNameAccount);
         accountService.saveAccount(account);
-        map.put("user",user);
+        return "redirect:/users" + userId;
+    }
+
+    @PostMapping("/users/{userId}/accounts/{accountId}")
+    public String deleteAccount (@PathVariable Long userId, @PathVariable Long accountId, ModelMap map, @RequestParam("accountName") String newNameAccount) {
+        Account account =accountService.findById(accountId);
+        account.setAccountName(newNameAccount);
+        accountService.saveAccount(account);
         return "redirect:/users" + userId;
     }
 
