@@ -48,18 +48,17 @@ public class AccountController {
 
         User user= userService.findById(userId);
         Account account =accountService.findById(accountId);
-        user.getAccounts().add(account);
         map.put("user",user);
+        map.put("account",account);
         return "updateAccount";
     }
     @PostMapping("/users/{userId}/accounts/{accountId}")
-    public String createNewAccount (@PathVariable Long userId,@PathVariable Long accountId, ModelMap map, Account account) {
+    public String createNewAccount (@PathVariable Long userId,@PathVariable Long accountId, ModelMap map, Account newNameAccount) {
 
         User user= userService.findById(userId);
-        account.getUsers().add(user);
-        user.getAccounts().add(account);
+        Account account =accountService.findById(accountId);
+        account.setAccountName(newNameAccount.getAccountName());
         accountService.saveAccount(account);
-        userService.saveUser(user);
         map.put("user",user);
         return "redirect:/users" + userId;
     }
