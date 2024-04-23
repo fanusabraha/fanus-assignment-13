@@ -52,7 +52,7 @@
 			<h1>Accounts</h1>
 			<!--Listing All the Bank Accounts-->
 			<div th:each="account:${user.accounts}">
-				<a th:href="'/users/' + ${user.userId} + '/account/' + ${account.accountId}" th:value="${account.accountId}" >[[${account.accountName}]]</a><br/>
+				<a th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}" >[[${account.accountName}]]</a><br/>
 			</div>
 
 			<form th:action="@{/users/{userId}/accounts/new(userId=${user.userId})}" method="get">
@@ -73,7 +73,7 @@
 			<span th:text="${user.name}"></span><br/>
 			<span th:text="${user.password}"></span>
 			<div th:each="account : ${user.accounts}">
-				<a	th:href="'/users/' + ${user.userId}" th:text="${account.accountName}"></a>
+				<a th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}" >[[${account.accountName}]]</a><br/>
 			</div>
 			<hr/>
 		</div>
