@@ -44,10 +44,10 @@ public class AccountController {
     }
 
     @GetMapping("/users/{userId}/accounts/{accountId}")
-    public String getTheNewAccount (@PathVariable Long userId,@PathVariable Long accountId, ModelMap map, Account account) {
+    public String getTheNewAccount (@PathVariable Long userId,@PathVariable Long accountId, ModelMap map) {
 
         User user= userService.findById(userId);
-        account.getUsers().add(user);
+        Account account =accountService.findById(accountId);
         user.getAccounts().add(account);
         map.put("user",user);
         return "updateAccount";
