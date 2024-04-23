@@ -52,7 +52,7 @@
 			<h1>Accounts</h1>
 			<!--Listing All the Bank Accounts-->
 			<div th:each="account:${user.accounts}">
-				<a th:href="'/users/' + ${user.userId}" th:value="${account.accountName}" ></a><br/>
+				<a th:href="'/users/' + ${user.userId}" th:value="${account.accountId}" >[[${account.accountName}]]</a><br/>
 			</div>
 
 			<form th:action="@{/users/{userId}/accounts/new(userId=${user.userId})}" method="get">
@@ -60,17 +60,9 @@
 				<br>
 				<br>
 			</form>
-			<!--<div th:each="accounts:${user.accounts}">
-				<a Account# th:href="" th:text="${user.userId}"></a> <br>
-				<form action="" method="get">
-					<input type="submit" value="Create New Bank Account">
-				</form>
-
-			</div>
-                -->
 
 			<a	href="http://localhost:8080/users" > <button>Go to Users</button></a> <br>
-			<a	href="http://localhost:8080/register" > <button>Register</button></a>
+
 		</div>
 
 
@@ -81,9 +73,10 @@
 			<span th:text="${user.name}"></span><br/>
 			<span th:text="${user.password}"></span>
 			<div th:each="account : ${user.accounts}">
-				<span th:text="${account.accountName}"></span>
+				<a	th:href="'/users/' + ${user.userId}" th:text="${account.accountName}"></a>
 			</div>
 			<hr/>
 		</div>
+		<a	href="http://localhost:8080/register" > <button>Register</button></a>
 	</body>
 </html>

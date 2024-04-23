@@ -22,9 +22,8 @@ public class AccountController {
     @GetMapping("/users/{userId}/accounts/new")
     public String newAccount (@PathVariable Long userId, ModelMap map) {
         User user= userService.findById(userId);
-        //Optional<Account> accountOpt= accountService.findById(accountId);
-       // Account account = accountOpt.orElse(new Account());
         Account account = new Account();
+        // refinery needed
         account.setAccountName(user.getName()+"is"+user.getAccounts().size());
         account.getUsers().add(user);
         user.getAccounts().add(account);
@@ -44,6 +43,15 @@ public class AccountController {
         return "redirect:/users/" + userId;
     }
 
+    @GetMapping("/users/{userId}/accounts/{accountId}")
+    public String getTheNewAccount (@PathVariable Long userId,@PathVariable Long accountId, ModelMap map, Account account) {
+
+        User user= userService.findById(userId);
+        account.getUsers().add(user);
+        user.getAccounts().add(account);
+        map.put("user",user);
+        return "updateAccount";
+    }
     @PostMapping("/users/{userId}/accounts/{accountId}")
     public String createNewAccount (@PathVariable Long userId,@PathVariable Long accountId, ModelMap map, Account account) {
 
@@ -52,10 +60,8 @@ public class AccountController {
         user.getAccounts().add(account);
         accountService.saveAccount(account);
         userService.saveUser(user);
-        //accountService.testSaveAccount(account,user);
         map.put("user",user);
-        //map.put("useraccount",user.getAccounts());
-        return "account";
+        return "redirect:/users" + userId;
     }
 
 
