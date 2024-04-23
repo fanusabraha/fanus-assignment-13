@@ -50,7 +50,7 @@ public class AccountController {
         Account account =accountService.findById(accountId);
         map.put("user",user);
         map.put("account",account);
-        return "updateAccount";
+        return "accountupdate";
     }
     @PostMapping("/users/{userId}/accounts/{accountId}")
     public String createNewAccount (@PathVariable Long userId,@PathVariable Long accountId, ModelMap map, Account newNameAccount) {
