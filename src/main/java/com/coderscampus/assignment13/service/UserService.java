@@ -52,6 +52,7 @@ public class UserService {
 	}
 
 	public User saveUser(User user) {
+		/*
 		if (user.getUserId() == null) {
 			Account checking = new Account();
 			checking.setAccountName("Checking Account");
@@ -65,6 +66,7 @@ public class UserService {
 			accountRepo.save(checking);
 			accountRepo.save(savings);
 		}
+		*/
 		if (user.getUserId() != null) {
 			Address newaddress = new Address();
 			newaddress.setAddressLine1(user.getAddress().getAddressLine1());

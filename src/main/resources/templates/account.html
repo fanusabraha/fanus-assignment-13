@@ -12,8 +12,8 @@
     </form>
     -->
 
-    <form   th:action="@{/users/{userId}/accounts/new(userId=${user.userId}, accountId=${account.accountId})}" method="post">
-        <input type="text" th:field="${user.accounts}">
+    <form   th:action="@{/users/{userId}/accounts/new(userId=${user.userId})}" method="post">
+        <input type="text" name="accountName" placeholder="Enter Account Name">
         <input type="submit" value="Save Account">
         <br><br><br>
     </form>

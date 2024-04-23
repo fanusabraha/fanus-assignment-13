@@ -50,12 +50,17 @@
 			</form>
 			<hr>
 			<h1>Accounts</h1>
+			<!--Listing All the Bank Accounts-->
+			<div th:each="account:${user.accounts}">
+				<a th:href="'/users/' + ${user.userId}" th:value="${account.accountName}" ></a><br/>
+			</div>
+
 			<form th:action="@{/users/{userId}/accounts/new(userId=${user.userId})}" method="get">
 				<input	type="submit" value="Create New Bank Account">
 				<br>
 				<br>
 			</form>
-			<!--<div th:each="accounts:${user.account.}">
+			<!--<div th:each="accounts:${user.accounts}">
 				<a Account# th:href="" th:text="${user.userId}"></a> <br>
 				<form action="" method="get">
 					<input type="submit" value="Create New Bank Account">
