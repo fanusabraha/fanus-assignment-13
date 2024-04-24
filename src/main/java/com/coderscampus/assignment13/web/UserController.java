@@ -5,7 +5,9 @@ import java.util.Optional;
 import java.util.Set;
 
 import com.coderscampus.assignment13.domain.Account;
+import com.coderscampus.assignment13.domain.Address;
 import com.coderscampus.assignment13.service.AccountService;
+import com.coderscampus.assignment13.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,6 +25,8 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private AccountService accountService;
+	@Autowired
+	private AddressService addressService;
 	
 	@GetMapping("/register")
 	public String getCreateUser (ModelMap model) {
@@ -61,8 +65,13 @@ public class UserController {
 	}
 	
 	@PostMapping("/users/{userId}")
-	public String postOneUser (User user) {
-		userService.saveUser(user);
+	public String postOneUser (User user, Address address) {
+		User existingUser = userService.findById(user.getUserId());
+		Address existingUserAddress = existingUser.getAddress();
+		existingUserAddress.setAddressDetails(address);
+		addressService.saveAddress(existingUserAddress);
+		userService.saveUser(existingUser);
+
 		return "redirect:/users/"+user.getUserId();
 	}
 	

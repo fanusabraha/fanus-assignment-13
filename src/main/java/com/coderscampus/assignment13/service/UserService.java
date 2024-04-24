@@ -53,21 +53,7 @@ public class UserService {
 
 	public User saveUser(User user) {
 		/*
-		if (user.getUserId() == null) {
-			Account checking = new Account();
-			checking.setAccountName("Checking Account");
-			checking.getUsers().add(user);
-			Account savings = new Account();
-			savings.setAccountName("Savings Account");
-			savings.getUsers().add(user);
-			
-			user.getAccounts().add(checking);
-			user.getAccounts().add(savings);
-			accountRepo.save(checking);
-			accountRepo.save(savings);
-		}
-		*/
-		if (user.getUserId() != null && user.getAddress() == null) {
+		if (user.getUserId() != null *//* && user.getAddress() == null *//*) {
 			Address newaddress = new Address();
 			newaddress.setAddressLine1(user.getAddress().getAddressLine1());
 			newaddress.setAddressLine2(user.getAddress().getAddressLine2());
@@ -78,14 +64,29 @@ public class UserService {
 			newaddress.setUserId(user.getUserId());
 			newaddress.setUser(user);
 			user.setAddress(newaddress);
-            // new from 4/20/2024
-           /* Account newaccount = new Account();
-            // adding user to account and vice versa adding account to user
-            newaccount.getUsers().add(user);
-            user.getAccounts().add(newaccount);
-            accountRepo.save(newaccount);
-			*/
+		}*/
+		return userRepo.save(user);
+	}
+	public User saveUserWithAdress(User user, Address address) {
+
+
+		if (user.getUserId() != null && address==null) {
+			Address newaddress = new Address();
+			newaddress.setAddressLine1(user.getAddress().getAddressLine1());
+			newaddress.setAddressLine2(user.getAddress().getAddressLine2());
+			newaddress.setCity(user.getAddress().getCity());
+			newaddress.setRegion(user.getAddress().getRegion());
+			newaddress.setCountry(user.getAddress().getCountry());
+			newaddress.setZipCode(user.getAddress().getZipCode());
+			newaddress.setUserId(user.getUserId());
+			newaddress.setUser(user);
+			user.setAddress(newaddress);
 		}
+		else {
+			address.setUser(user);
+			user.setAddress(address);
+		}
+
 		return userRepo.save(user);
 	}
 
