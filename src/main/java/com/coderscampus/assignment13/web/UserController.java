@@ -38,7 +38,8 @@ public class UserController {
 	
 	@PostMapping("/register")
 	public String postCreateUser (User user) {
-
+		Address address = new Address();
+		address.setUser(user);
 		userService.saveUser(user);
 		return "redirect:/register";
 	}
@@ -61,6 +62,9 @@ public class UserController {
 		User user = userService.findById(userId);
 		model.put("users", Arrays.asList(user));
 		model.put("user", user);
+		// new test day 21/4
+		Address oldAddress = user.getAddress();
+		model.put("oldAddress", oldAddress);
 		return "users";
 	}
 	
@@ -68,6 +72,11 @@ public class UserController {
 	public String postOneUser (User user, Address address) {
 		User existingUser = userService.findById(user.getUserId());
 		Address existingUserAddress = existingUser.getAddress();
+		if (existingUserAddress == null) {
+			existingUserAddress = new Address();
+			existingUser.setAddress(existingUserAddress);
+			existingUserAddress.setUser(existingUser);
+		}
 		existingUserAddress.setAddressDetails(address);
 		addressService.saveAddress(existingUserAddress);
 		userService.saveUser(existingUser);

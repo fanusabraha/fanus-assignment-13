@@ -34,11 +34,21 @@ public class Account {
 	public void setTransactions(List<Transaction> transactions) {
 		this.transactions = transactions;
 	}
-	@ManyToMany(mappedBy = "accounts",cascade = CascadeType.MERGE)
+	@ManyToMany(mappedBy = "accounts",cascade = CascadeType.ALL)
 	public List<User> getUsers() {
 		return users;
 	}
 	public void setUsers(List<User> users) {
 		this.users = users;
+	}
+
+	@Override
+	public String toString() {
+		return "Account{" +
+				"accountId=" + accountId +
+				", accountName='" + accountName + '\'' +
+				", transactions=" + transactions +
+				", users=" + users +
+				'}';
 	}
 }
