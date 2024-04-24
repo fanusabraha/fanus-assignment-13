@@ -54,17 +54,9 @@ public class AccountController {
         return "accountupdate";
     }
     @PostMapping("/users/{userId}/accounts/{accountId}")
-    public String saveNewAccount (@PathVariable Long userId, @PathVariable Long accountId, ModelMap map, @RequestParam("accountName") String newNameAccount) {
+    public String saveNewAccount (@PathVariable Long userId, @PathVariable Long accountId, ModelMap map, @RequestParam("accountName") String newAccountName) {
         Account account =accountService.findById(accountId);
-        account.setAccountName(newNameAccount);
-        accountService.saveAccount(account);
-        return "redirect:/users" + userId;
-    }
-
-    @PostMapping("/users/{userId}/accounts/{accountId}")
-    public String deleteAccount (@PathVariable Long userId, @PathVariable Long accountId, ModelMap map, @RequestParam("accountName") String newNameAccount) {
-        Account account =accountService.findById(accountId);
-        account.setAccountName(newNameAccount);
+        account.setAccountName(newAccountName);
         accountService.saveAccount(account);
         return "redirect:/users" + userId;
     }
