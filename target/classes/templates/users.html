@@ -72,7 +72,7 @@
 			<span th:text="${user.name}"></span><br/>
 			<span th:text="${user.password}"></span>
 			<div th:each="account : ${user.accounts}">
-				<a th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}" >[[${account.accountName}]]</a><br/>
+				<a th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}" > [[${user.username}]]  [[${account.accountName}]]</a><br/>
 			</div>
 			<hr/>
 		</div>

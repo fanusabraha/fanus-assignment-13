@@ -58,7 +58,7 @@ public class AccountController {
         Account account =accountService.findById(accountId);
         account.setAccountName(newAccountName);
         accountService.saveAccount(account);
-        return "redirect:/users" + userId;
+        return "redirect:/users/" + userId;
     }
 
 

@@ -5,11 +5,11 @@
     <title>Update Account</title>
 </head>
 <body>
-    <h1>Account :[[${account.accountName}]]</h1>
-    <form   th:action="@{/users/{userId}(userId=${user.userId})}" method="post">
+    <h1>Account: [[${account.accountName}]]</h1>
+    <form   th:action="@{/users/{userId}/accounts/{accountId} (userId=${user.userId}, accountId=${account.accountId})}" method="post">
         <input type="text" name="accountName" placeholder="Enter Account Name">
         <input type="submit" value="Save New Name">
-        <br><br><br>
+        <br><br>
     </form>
     <br><br><br>
     <a	href="http://localhost:8080/users" > <button>Back to Users</button></a> <br>
