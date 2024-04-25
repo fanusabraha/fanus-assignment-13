@@ -64,6 +64,10 @@ public class UserController {
 		model.put("user", user);
 		// new test day 21/4
 		Address oldAddress = user.getAddress();
+		// this is if the user is new and does not have address it will not throw an exception
+		if (oldAddress==null){
+			oldAddress = new Address();
+		}
 		model.put("oldAddress", oldAddress);
 		return "users";
 	}
@@ -78,6 +82,9 @@ public class UserController {
 			existingUserAddress.setUser(existingUser);
 		}
 		existingUserAddress.setAddressDetails(address);
+		existingUser.setName(user.getName());
+		existingUser.setUsername(user.getUsername());
+		if (user.getPassword()!=null){existingUser.setPassword(user.getPassword());}
 		addressService.saveAddress(existingUserAddress);
 		userService.saveUser(existingUser);
 

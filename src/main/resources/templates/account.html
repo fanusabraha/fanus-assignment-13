@@ -8,10 +8,15 @@
 <h1>Account numbers to come soon</h1>
 
     <form   th:action="@{/users/{userId}/accounts/new(userId=${user.userId})}" method="post">
-        <input type="text" name="accountName" placeholder="Enter Account Name">
+        <div th:if="${user.accounts.size()}<1">
+        <input type="text" name="accountName"  th:value="'Account ' + 1" placeholder="Enter Account Name"> </div>
+
+        <div th:if="{user.accounts.size()}>= 1">
+            <input type="text" name="accountName"  th:value="'Account ' + ${user.accounts.size() + 1}" placeholder="Enter Account Name"> </div>
         <input type="submit" value="Save Account">
         <br><br><br>
     </form>
+
     <a	href="http://localhost:8080/users" > <button>Back to Users</button></a> <br>
     <a	href="http://localhost:8080/register" > <button>Register</button></a>
 
