@@ -5,7 +5,7 @@
     <title>Update</title>
 </head>
 <body>
-<h1>Account numbers to come soon</h1>
+<h1>Create a new Account</h1>
 
     <form   th:action="@{/users/{userId}/accounts/new(userId=${user.userId})}" method="post">
         <div th:if="${user.accounts.size()}<1">Account name:
